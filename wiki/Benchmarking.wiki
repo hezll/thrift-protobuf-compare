@@ -1,7 +1,5 @@
 = Introduction =
-
-<img src='http://chart.apis.google.com/chart?chtt=Object+creation&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=1000x300&chd=t:429.504,327.6416,223.6544,225.0496,187.904,221.8496,223.2448,224.8448,224.9472,223.1424,225.1008,222.0416,220.1088,188.8&chds=150,300&chxl=0:|protobuf|thrift|java|java+(externalizable)|scala|stax/woodstox|stax/aalto|binaryxml/FI|json+(jackson)|xstream+(xpp)|xstream+(stax)|xstream+(stax+with+conv)|javolution+xml+format|sbinary&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
-
+With the help of many contributes, this project is now benchmarking much more then just protobuf and thrift. The charts below are displaying the latest results. Note that the charts are scaled to best fit the results and they might be misleading in come cases. If you wish to see the numbers scroll down to the chart at the end of the page.
 
 <img src='http://chart.apis.google.com/chart?chtt=Serialization&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=1000x300&chd=t:4237.44,4762.496,14601.472,5419.008,36075.392,6272,4944.512,15300.48,3008,36075.392,19242.496,11847.552,3958.528,4214.016&chds=0,36100&chxl=0:|protobuf|thrift|java|java+(externalizable)|scala|stax/woodstox|stax/aalto|binaryxml/FI|json+(jackson)|xstream+(xpp)|xstream+(stax)|xstream+(stax+with+conv)|javolution+xml+format|sbinary&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
 
@@ -10,9 +8,11 @@
 
 <img src='http://chart.apis.google.com/chart?chtt=Serialized+size&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=1000x300&chd=t:217,314,845,315,1950,406,406,224,310,931,310,325,345,190&chds=150,1000&chxl=0:|protobuf|thrift|java|java+(externalizable)|scala|stax/woodstox|stax/aalto|binaryxml/FI|json+(jackson)|xstream+(xpp)|xstream+(stax)|xstream+(stax+with+conv)|javolution+xml+format|sbinary&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
 
+<img src='http://chart.apis.google.com/chart?chtt=Object+creation&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=1000x300&chd=t:429.504,327.6416,223.6544,225.0496,187.904,221.8496,223.2448,224.8448,224.9472,223.1424,225.1008,222.0416,220.1088,188.8&chds=180,250&chxl=0:|protobuf|thrift|java|java+(externalizable)|scala|stax/woodstox|stax/aalto|binaryxml/FI|json+(jackson)|xstream+(xpp)|xstream+(stax)|xstream+(stax+with+conv)|javolution+xml+format|sbinary&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
 
-= Details =
-|| ||Object create||Serialization||Deserialization||Serialized Size||
+= Numbers =
+
+|| ||Object create(nano sec)||Serialization(nano sec)||Deserialization(nano sec)||Serialized Size(bytes)||
 ||protobuf||429.50400||4237.44000||5082.11200||217||
 ||thrift||327.64160||4762.49600||7378.94400||314||
 ||java||223.65440||14601.47200||73108.48000||845||
