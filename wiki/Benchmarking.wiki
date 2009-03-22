@@ -1,5 +1,3 @@
-#Benchmarking Results
-
 = Introduction =
 
 
@@ -20,3 +18,4 @@
 ||xstream (stax with conv)||222.04160||11847.55200||25675.52000||325||
 ||javolution xml format||220.10880||3958.52800||9916.03200||345||
 ||sbinary||188.80000||4214.01600||4021.50400||190||
+
