@@ -1,5 +1,14 @@
 = Introduction =
 
+<img src='http://chart.apis.google.com/chart?chtt=Object+creation&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=1000x300&chd=t:429.504,327.6416,223.6544,225.0496,187.904,221.8496,223.2448,224.8448,224.9472,223.1424,225.1008,222.0416,220.1088,188.8&chds=150,300&chxl=0:|protobuf|thrift|java|java+(externalizable)|scala|stax/woodstox|stax/aalto|binaryxml/FI|json+(jackson)|xstream+(xpp)|xstream+(stax)|xstream+(stax+with+conv)|javolution+xml+format|sbinary&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
+
+
+<img src='http://chart.apis.google.com/chart?chtt=Serialization&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=1000x300&chd=t:4237.44,4762.496,14601.472,5419.008,36075.392,6272,4944.512,15300.48,3008,36075.392,19242.496,11847.552,3958.528,4214.016&chds=0,36100&chxl=0:|protobuf|thrift|java|java+(externalizable)|scala|stax/woodstox|stax/aalto|binaryxml/FI|json+(jackson)|xstream+(xpp)|xstream+(stax)|xstream+(stax+with+conv)|javolution+xml+format|sbinary&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
+
+
+<img src='http://chart.apis.google.com/chart?chtt=Deserialization&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=1000x300&chd=t:5082.112,7378.944,73108.48,18635.904,193432.96,9828.48,7803.008,16663.936,4543.104,193432.96,57246.464,25675.52,9916.032,4021.504&chds=2000,80000&chxl=0:|protobuf|thrift|java|java+(externalizable)|scala|stax/woodstox|stax/aalto|binaryxml/FI|json+(jackson)|xstream+(xpp)|xstream+(stax)|xstream+(stax+with+conv)|javolution+xml+format|sbinary&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
+
+<img src='http://chart.apis.google.com/chart?chtt=Serialized+size&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=1000x300&chd=t:217,314,845,315,1950,406,406,224,310,931,310,325,345,190&chds=150,1000&chxl=0:|protobuf|thrift|java|java+(externalizable)|scala|stax/woodstox|stax/aalto|binaryxml/FI|json+(jackson)|xstream+(xpp)|xstream+(stax)|xstream+(stax+with+conv)|javolution+xml+format|sbinary&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
 
 
 = Details =
@@ -18,4 +27,3 @@
 ||xstream (stax with conv)||222.04160||11847.55200||25675.52000||325||
 ||javolution xml format||220.10880||3958.52800||9916.03200||345||
 ||sbinary||188.80000||4214.01600||4021.50400||190||
-
