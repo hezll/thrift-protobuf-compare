@@ -29,3 +29,24 @@ Object creation, not so meaningful since it takes in average 100 nano to create 
 ||xstream (stax with conv)||222.04160||11847.55200||25675.52000||325||
 ||javolution xml format||220.10880||3958.52800||9916.03200||345||
 ||sbinary||188.80000||4214.01600||4021.50400||190||
+
+== other result ==
+times in nano sec
+{{{
+                        ,   Object create,   Serialization, Deserialization, Serialized Size
+protobuf                ,       251.48220,      3993.31100,      2381.89500,        217
+thrift                  ,       180.58240,      4032.94200,      4486.17300,        314
+java                    ,       113.43250,     15345.10850,     71428.30750,        845
+java (externalizable)   ,        99.67390,      5143.20900,     18486.13700,        315
+scala                   ,        70.67800,     36424.35000,    191949.98750,       1950
+stax/woodstox           ,       113.78725,      6130.09800,      9678.59800,        406
+stax/aalto              ,       114.09645,      4960.85650,      7582.83200,        406
+binaryxml/FI            ,       115.93390,     14485.96750,     13765.17250,        224
+json (jackson)          ,       113.84285,      3239.59500,      5367.68050,        310
+xstream (xpp)           ,       113.75490,    123798.15800,    168217.26100,        759
+xstream (xpp with conv) ,       112.45020,     13091.60900,     44695.10800,        287
+xstream (stax)          ,       112.15580,    123886.92550,    141754.17200,        797
+xstream (stax with conv),       113.84555,     11555.60050,     23279.78450,        325
+javolution xmlformat    ,       112.81370,      4979.22750,     12023.23850,        345
+sbinary                 ,        70.50695,      3728.30900,      3565.46650,        190
+}}}
