@@ -16,13 +16,13 @@ MediaContent
 |          }
 |
 |----Image {
-|           URI="http://javaone.com/keynote_large.jpg"
+|            URI="http://javaone.com/keynote_large.jpg"
 |            Size=Size.LARGE(enum)
 |            Title="Javaone Keynote"
 |          }
 |
 |----Image {
-|           URI="http://javaone.com/keynote_thumbnail.jpg"
+|            URI="http://javaone.com/keynote_thumbnail.jpg"
 |            Size=Size.SMALL(enum)
 |            Title="Javaone Keynote"
 |          }
