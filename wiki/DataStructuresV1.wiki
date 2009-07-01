@@ -1,6 +1,7 @@
 #Discussing the Data structures used in the benchamrk
 
 We are serializing a tree of objects with the root being MediaContent.
+{{{
 MediaContent
 |
 |----Media{
@@ -25,3 +26,4 @@ MediaContent
 |            Size=Size.SMALL(enum)
 |            Title="Javaone Keynote"
 |          }
+}}}
