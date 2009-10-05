@@ -9,52 +9,51 @@ Benchmarks can be very misleading. Different datasets will provide different res
 ==Total Time==
 Including creating an object, serializing and deserializing
 
-<img src='http://chart.apis.google.com/chart?chtt=totalTime&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=689x435&chd=t:3179.6208549999997,4241.880365,4590.9116300000005,5257.78796,5799.079685000001,5930.450605,6197.85818,6281.48285,6522.5934099999995,9191.59133,12041.907190000002,14162.90221,15962.12533,18936.144245,23140.65144,26386.921629999997,29459.900874999996,33360.895995,56635.132135,150681.76458,183558.25216,187015.50274,930483.232995&chds=0,151218&chxl=0:|hessian|xstream%20%28stax%29|xstream%20%28xpp%29|scala|java|xstream%20%28xpp%20with%20conv%29|kryo-compressed|JsonMarshaller|xstream%20%28stax%20with%20conv%29|binaryxml/FI|java%20%28externalizable%29|javolution%20xmlformat|stax/woodstox|stax/aalto|avro-generic|json%20%28jackson%29|thrift|kryo-optimized|kryo|protobuf|sbinary|avro-specific|activemq%20protobuf&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=totalTime&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=689x390&chd=t:4565.22903,5227.99975,5538.7479299999995,5868.525729999999,6017.94514,6085.915655,6720.30128,7082.793465,9073.479715,12370.532475,12858.382160000001,17798.35892,19453.932249999998,23543.673,27151.601765,34814.003635,58940.046945,156672.0742,191558.19539,196323.10311999999,1117383.3214800002&chds=0,183336&chxl=0:|hessian|xstream (xpp)|xstream (stax)|scala|java|xstream (xpp with conv)|JsonMarshaller|xstream (stax with conv)|binaryxml/FI|java (externalizable)|javolution xmlformat|stax/woodstox|stax/aalto|thrift|avro-generic|kryo-optimized|json (jackson)|kryo|sbinary|protobuf|avro-specific&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
 
 ==Serialization Time==
 Serializing with a new object each time (object creation time not included)
 
-<img src='http://chart.apis.google.com/chart?chtt=timeSer&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=689x435&chd=t:1243.6785,2143.632,2463.5445,2482.1795,3041.656,3048.779,3073.199,3392.1265,3433.815,3725.2805,3896.0935,4551.264,5019.687,8272.7085,9386.4995,9420.69,10591.564,11124.5505,24400.619,26509.2785,72636.762,73774.576,897377.684&chds=0,103044&chxl=0:|hessian|xstream (xpp)|xstream (stax)|scala|kryo-compressed|xstream (xpp with conv)|java|JsonMarshaller|binaryxml/FI|xstream (stax with conv)|javolution xmlformat|stax/woodstox|stax/aalto|java (externalizable)|kryo|kryo-optimized|thrift|activemq protobuf|protobuf|sbinary|json (jackson)|avro-generic|avro-specific&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=timeSer&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=689x390&chd=t:1557.0505,2101.171,2332.3095,3007.459,3265.295,3381.542,3473.189,3570.3965,3599.404,4019.801,4266.4975,4562.1935,8711.6945,9568.2235,9855.6445,10969.643,11972.9555,27947.0935,74171.238,79780.947,1082814.742&chds=0,129040&chxl=0:|hessian|xstream (xpp)|xstream (stax)|scala|xstream (xpp with conv)|java|JsonMarshaller|binaryxml/FI|xstream (stax with conv)|java (externalizable)|stax/woodstox|javolution xmlformat|kryo-optimized|kryo|stax/aalto|thrift|sbinary|protobuf|json (jackson)|avro-generic|avro-specific&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
 
 ==Deserialization Time==
 Most expensive operation
 
-<img src='http://chart.apis.google.com/chart?chtt=timeDSer&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=689x435&chd=t:16.14,1870.2285,2037.7705,2048.723,2286.0055,2361.516,2462.9635,3001.1305,3740.4585,4980.8775,5217.011,7410.604,9065.259,9470.47,12157.457,14789.4985,16887.2185,22158.7925,33026.075,45966.094,109704.755,114300.404,124112.492&chds=0,47744&chxl=0:|scala|xstream (stax)|xstream (xpp)|java|hessian|xstream (xpp with conv)|JsonMarshaller|xstream (stax with conv)|java (externalizable)|binaryxml/FI|javolution xmlformat|stax/woodstox|stax/aalto|kryo-compressed|json (jackson)|thrift|kryo-optimized|avro-generic|kryo|sbinary|protobuf|avro-specific|activemq protobuf&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=timeDSer&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=689x390&chd=t:1902.883,1998.9535,2214.908,2220.6745,2412.6155,2558.2515,3572.522,3608.2575,5525.1705,8026.934,8764.341,9809.163,13157.854,14755.052,17218.5835,22764.8845,34491.536,47893.205,116464.7265,117309.155,128664.9855&chds=0,53840&chxl=0:|scala|xstream (stax)|xstream (xpp)|java|hessian|xstream (xpp with conv)|JsonMarshaller|xstream (stax with conv)|java (externalizable)|binaryxml/FI|javolution xmlformat|stax/woodstox|stax/aalto|json (jackson)|thrift|avro-generic|kryo-optimized|kryo|sbinary|protobuf|avro-specific&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
+
 ==Serialization Size==
 May vary a lot depending on number of repetitions in lists, usage of number compacting in protobuf, strings vs numerics and more. Interesting point is Scala and Java which holds the name of the classes in the serialized form. I.e. longer class names = larger serialized form. In Scala its worse since the Scala compiler creates more implicit classes then java.
 
-<img src='http://chart.apis.google.com/chart?chtt=length&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=689x435&chd=t:129.0,190.0,211.0,211.0,217.0,219.0,231.0,239.0,300.0,314.0,315.0,348.0,361.0,378.0,399.0,419.0,475.0,475.0,541.0,833.0,871.0,919.0,1950.0&chds=0,916&chxl=0:|scala|java|xstream (stax)|xstream (xpp)|hessian|stax/woodstox|stax/aalto|javolution xmlformat|xstream (stax with conv)|json (jackson)|xstream (xpp with conv)|JsonMarshaller|java (externalizable)|thrift|binaryxml/FI|kryo|protobuf|kryo-optimized|activemq protobuf|avro-specific|avro-generic|sbinary|kryo-compressed&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=length&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=689x390&chd=t:211.0,211.0,217.0,231.0,236.0,264.0,300.0,348.0,353.0,361.0,378.0,397.0,399.0,419.0,475.0,475.0,541.0,833.0,871.0,919.0,2024.0&chds=0,996&chxl=0:|scala|java|xstream (stax)|xstream (xpp)|hessian|stax/woodstox|stax/aalto|javolution xmlformat|xstream (stax with conv)|java (externalizable)|json (jackson)|xstream (xpp with conv)|thrift|JsonMarshaller|binaryxml/FI|sbinary|kryo|protobuf|kryo-optimized|avro-specific|avro-generic&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
 
 ==Object Creation Time==
 Object creation is not so meaningful since it takes in average 100 nano to create an object. The surprise comes from <a href="http://code.google.com/p/protobuf/">protobuf</a> which takes a very long time to create an object. Its the only point in this set of benchmarks where it didn't perform as well as <a href="http://incubator.apache.org/thrift/">thrift</a>. Scala (and to a lesser point - java) on the other hand is fast, seems like its a good language to handle in memory data structures but when coming to serialization you might want to check the alternatives.
 
-<img src='http://chart.apis.google.com/chart?chtt=timeCreate&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=689x435&chd=t:59.99408,60.00913,75.360605,77.474135,77.47985,77.552995,77.95621,78.33674,78.404375,78.44444,78.48683,78.92116,79.01313,79.174745,79.259185,79.38783,79.473995,80.03919,114.701855,123.52868,178.36146,1127.973365,2017.44541&chds=0,428&chxl=0:|avro-generic|avro-specific|protobuf|thrift|activemq protobuf|stax/woodstox|hessian|java (externalizable)|kryo|binaryxml/FI|JsonMarshaller|xstream (xpp)|stax/aalto|xstream (stax with conv)|kryo-compressed|xstream (stax)|javolution xmlformat|xstream (xpp with conv)|json (jackson)|java|kryo-optimized|sbinary|scala&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=timeCreate&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=689x390&chd=t:58.54493,59.9952,73.896155,74.24016,75.120215,76.163635,76.54575,76.9265,77.04348,77.100975,77.198945,77.373765,77.37814,77.42962,77.45473,77.80239,78.31142,128.729465,221.58725,1105.29553,2060.87878&chds=0,454&chxl=0:|avro-generic|avro-specific|protobuf|thrift|java (externalizable)|xstream (stax)|kryo|xstream (xpp)|json (jackson)|JsonMarshaller|java|stax/woodstox|hessian|xstream (stax with conv)|binaryxml/FI|xstream (xpp with conv)|stax/aalto|javolution xmlformat|kryo-optimized|scala|sbinary&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=10&chxt=y&nonsense=aaa.png'/>
 
 = Numbers =
 Times in nano sec, size in bytes
 {{{
                         ,   Object create,   Serialization, Deserialization,      Total Time, Serialized Size
-avro-generic            ,      2017.44541,      2143.63200,      2361.51600,      6522.59341,        211
-avro-specific           ,      1127.97337,      1243.67850,      1870.22850,      4241.88037,        211
-activemq protobuf       ,       114.70186,      3048.77900,        16.14000,      3179.62085,        217
-protobuf                ,       178.36146,      3041.65600,      2037.77050,      5257.78796,        231
-thrift                  ,       123.52868,      3073.19900,      3001.13050,      6197.85818,        314
-hessian                 ,        79.47400,    897377.68400,     33026.07500,    930483.23300,        541
-kryo                    ,        79.25919,      3433.81500,      2286.00550,      5799.07969,        239
-kryo-optimized          ,        75.36061,      3392.12650,      2462.96350,      5930.45061,        219
-kryo-compressed         ,        78.40438,     24400.61900,      4980.87750,     29459.90087,        129
-java                    ,        77.47414,     10591.56400,     45966.09400,     56635.13214,        919
-java (externalizable)   ,        79.38783,      3725.28050,     12157.45700,     15962.12533,        315
-scala                   ,        59.99408,     26509.27850,    124112.49200,    150681.76458,       1950
-json (jackson)          ,        77.47985,      2463.54450,      3740.45850,      6281.48285,        378
-JsonMarshaller          ,        79.01313,      9420.69000,     16887.21850,     26386.92163,        348
-stax/woodstox           ,        80.03919,      4551.26400,      7410.60400,     12041.90719,        475
-stax/aalto              ,        78.48683,      3896.09350,      5217.01100,      9191.59133,        475
-binaryxml/FI            ,        79.17475,      9386.49950,      9470.47000,     18936.14425,        300
-xstream (xpp)           ,        78.92116,     73774.57600,    109704.75500,    183558.25216,        833
-xstream (xpp with conv) ,        77.55300,     11124.55050,     22158.79250,     33360.89600,        361
-xstream (stax)          ,        78.33674,     72636.76200,    114300.40400,    187015.50274,        871
-xstream (stax with conv),        78.44444,      8272.70850,     14789.49850,     23140.65144,        399
-javolution xmlformat    ,        77.95621,      5019.68700,      9065.25900,     14162.90221,        419
-sbinary                 ,        60.00913,      2482.17950,      2048.72300,      4590.91163,        190
+avro-generic            ,      2060.87878,      2101.17100,      2558.25150,      6720.30128,        211
+avro-specific           ,      1105.29553,      1557.05050,      1902.88300,      4565.22903,        211
+protobuf                ,       221.58725,      3007.45900,      1998.95350,      5227.99975,        231
+thrift                  ,       128.72947,      3381.54200,      3572.52200,      7082.79347,        353
+hessian                 ,        77.04348,   1082814.74200,     34491.53600,   1117383.32148,        541
+kryo                    ,        77.45473,      3570.39650,      2220.67450,      5868.52573,        236
+kryo-optimized          ,        73.89616,      3599.40400,      2412.61550,      6085.91566,        217
+java                    ,        77.19895,     10969.64300,     47893.20500,     58940.04695,        919
+java (externalizable)   ,        78.31142,      4562.19350,     13157.85400,     17798.35892,        397
+scala                   ,        59.99520,     27947.09350,    128664.98550,    156672.07420,       2024
+json (jackson)          ,        77.37814,      2332.30950,      3608.25750,      6017.94514,        378
+JsonMarshaller          ,        77.37377,      9855.64450,     17218.58350,     27151.60177,        348
+stax/woodstox           ,        77.10098,      4266.49750,      8026.93400,     12370.53248,        475
+stax/aalto              ,        75.12022,      3473.18900,      5525.17050,      9073.47972,        475
+binaryxml/FI            ,        76.54575,      9568.22350,      9809.16300,     19453.93225,        300
+xstream (xpp)           ,        77.42962,     79780.94700,    116464.72650,    196323.10312,        833
+xstream (xpp with conv) ,        76.16364,     11972.95550,     22764.88450,     34814.00364,        361
+xstream (stax)          ,        77.80239,     74171.23800,    117309.15500,    191558.19539,        871
+xstream (stax with conv),        76.92650,      8711.69450,     14755.05200,     23543.67300,        399
+javolution xmlformat    ,        74.24016,      4019.80100,      8764.34100,     12858.38216,        419
+sbinary                 ,        58.54493,      3265.29500,      2214.90800,      5538.74793,        264
 }}}
