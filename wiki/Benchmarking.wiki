@@ -8,7 +8,7 @@ Benchmarks can be very misleading. Different hardware, use cases, and/or dataset
 = Charts =
 
 ==Setup==
-The following measurements were performed with revision <a href="http://code.google.com/p/thrift-protobuf-compare/source/browse/?r=128">r128</a> on Windows 7 64-bit using Sun's JVM 1.6.0_15 JRE 32-bit, with an Intel Core i7 920 CPU. Note the tests are run with a JVM heap size of 16MB and using the server HotSpot compiler.
+The following measurements were performed with revision <a href="http://code.google.com/p/thrift-protobuf-compare/source/browse/?r=128">r128</a> on Windows 7 64-bit using Sun's JVM 1.6.0_15 JRE 32-bit, with an Intel Core i7 920 CPU. Note the tests are run with a JVM heap size of 16MB and using the server !HotSpot compiler.
 
 Omitted from the first three charts: json/google-gson and scala. These serializers are so slow, they would break the scale of our charts. See below for the naked data.
 
