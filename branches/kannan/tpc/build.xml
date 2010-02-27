@@ -1,0 +1,49 @@
+<project name="Thrift, ProtoBuf comparison" default="jarjar">
+    <target name="prepare">
+        <mkdir dir="build" />
+        <mkdir dir="dist" />
+    </target>
+    <target name="clean">
+        <delete dir="build"/>
+        <delete dir="dist"/>
+    </target>
+
+    <target name="compile" depends="prepare">
+      
+        <!-- generate the activemq protobuf beans -->
+        <taskdef name="activemqprotoc" classname="org.apache.activemq.protobuf.compiler.ProtoTask" 
+           classpath="lib/activemq-protobuf-1.1-SNAPSHOT.jar:lib/activemq-util-6.0-SNAPSHOT.jar"/>
+        <activemqprotoc source="media.activemq.proto" target="src"/>
+
+        <!-- First, thrift beans -->
+        <javac srcdir="gen-javabean" destdir="build" classpath="lib" source="1.5" target="1.5">
+          <classpath><fileset dir="lib" /> </classpath>
+        </javac>
+        <javac srcdir="src" destdir="build" classpath="lib" source="1.5" target="1.5" debug="true">
+          <classpath><fileset dir="lib" /> </classpath>
+        </javac>
+    </target>
+    
+    <target name="jarjar" depends="compile">
+        <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask" classpath="jarjar/jarjar-1.0.jar"/>
+        <jarjar jarfile="dist/tpc-benchmark.jar">
+            <manifest>
+                <attribute name="Main-Class" value="serializers.BenchmarkRunner" />
+            </manifest>
+            <fileset dir="build"/>
+            <zipgroupfileset dir="lib" includes="*.jar" />
+            <keep pattern="serializers.**"/>
+            <!-- below should've been removed but jarjar complains about duplicate META-INF/LICENSE -->
+            <keep pattern="com.**"/>
+            <keep pattern="comm.**"/>
+            <keep pattern="org.**"/>
+            <keep pattern="javax.**"/>
+            <keep pattern="javolution.**"/>
+            <keep pattern="sbinary.**"/>
+            <keep pattern="scala.**"/>
+        </jarjar>
+    </target>
+    
+
+</project>
+
