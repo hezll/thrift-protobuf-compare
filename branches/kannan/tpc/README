@@ -1,2 +1,9 @@
-$protoc --java_out=src media.proto
- ./tutorial.thrift
+Requirements:
+- GNU Make 3.81+
+- JDK 1.5+
+
+To compile:
+  make
+
+To generate bindings for schema files, see top of "Makefile" for
+instructions on what to put into "Config.mk".
