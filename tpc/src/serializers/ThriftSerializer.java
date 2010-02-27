@@ -9,8 +9,8 @@ import serializers.thrift.MediaContent;
 import serializers.thrift.Player;
 import serializers.thrift.Size;
 
-import com.facebook.thrift.protocol.TBinaryProtocol;
-import com.facebook.thrift.transport.TIOStreamTransport;
+import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.transport.TIOStreamTransport;
 
 public class ThriftSerializer  implements ObjectSerializer<MediaContent>
 {
@@ -53,8 +53,16 @@ public class ThriftSerializer  implements ObjectSerializer<MediaContent>
     media.addToPerson("Steve Jobs");
     media.setPlayer(Player.JAVA);
 
-    Image image1 = new Image("http://javaone.com/keynote_large.jpg", "Javaone Keynote", 0, 0, Size.LARGE);
-    Image image2 = new Image("http://javaone.com/keynote_thumbnail.jpg", "Javaone Keynote", 0, 0, Size.SMALL);
+    Image image1 = new Image("http://javaone.com/keynote_large.jpg");
+    image1.setTitle("Javaone Keynote");
+    image1.setHeight(0);
+    image1.setWidth(0);
+    image1.setSize(Size.LARGE);
+    Image image2 = new Image("http://javaone.com/keynote_thumbnail.jpg");
+    image2.setTitle("Javaone Keynote");
+    image2.setHeight(0);
+    image2.setWidth(0);
+    image2.setSize(Size.SMALL);
 
     MediaContent content = new MediaContent();
     content.setMedia(media);
