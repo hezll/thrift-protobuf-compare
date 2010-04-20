@@ -1,0 +1,163 @@
+*THIS PAGE IS INACCURATE*.  This page is currently under construction.  The data here is not accurate (yet).  Once we think we have accurate data, this notice will be removed.
+
+= Feature Comparison =
+
+Performance numbers are useful, but there are many other important factors you should take into account before picking a serialization tool.  For example:
+ * some tools perform more safety checks than others -- these checks might be worth the performance hit
+ * some tools will let you serialize your own hand-written Java classes; others require that you use Java classes generated from a schema file
+
+This page tries to summarize the main non-performance-related differences between the tools.
+
+<table border="1" cellspacing="0">
+<tr>
+   <th>Tool</th>
+   <th>Language-Neutral</th>
+   <th>Data Structure</th>
+   <th>Serialization</th>
+   <th>Formats</th>
+   <th>Schema Change</th>
+</tr>
+<tr>
+   <td>java</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>binary</td>
+   <td></td>
+</tr>
+<tr>
+   <td>java-ext</td>
+   <td></td>
+   <td></td>
+   <td>manual</td>
+   <td>binary</td>
+   <td></td>
+</tr>
+<tr>
+   <td>kryo</td>
+   <td></td>
+   <td>optional annotate</td>
+   <td></td>
+   <td>binary</td>
+   <td></td>
+</tr>
+<tr>
+   <td>protobuf</td>
+   <td>yes</td>
+   <td>schema+gen</td>
+   <td></td>
+   <td>binary, json</td>
+   <td>partial</td>
+</tr>
+<tr>
+   <td>thrift</td>
+   <td>yes</td>
+   <td>schema+gen</td>
+   <td></td>
+   <td>binary, json-like</td>
+   <td>partial</td>
+</tr>
+<tr>
+   <td>avro</td>
+   <td>yes</td>
+   <td>schema+gen</td>
+   <td></td>
+   <td>binary, json</td>
+   <td>partial</td>
+</tr>
+<tr>
+   <td>cks</td>
+   <td>yes</td>
+   <td>schema+gen</td>
+   <td></td>
+   <td>binary, json-like</td>
+   <td></td>
+</tr>
+<tr>
+   <td>json/jackson</td>
+   <td>yes</td>
+   <td></td>
+   <td>manual</td>
+   <td>json+abbrev</td>
+   <td></td>
+</tr>
+<tr>
+   <td>json/jackson-databind</td>
+   <td>yes</td>
+   <td></td>
+   <td></td>
+   <td>json</td>
+   <td></td>
+</tr>
+<tr>
+   <td>json/twolattes</td>
+   <td>yes</td>
+   <td>annotate</td>
+   <td></td>
+   <td>json+abbrev</td>
+   <td></td>
+</tr>
+</table>
+
+*Language-neutral*: Whether the tool is a viable option if you want to be language-neutral.  For example, though it is _possible_ for other languages to consume Java's built-in serialization format, it is definitely not convenient -- that's why Java's built-in serialization format is not listed as being language-neutral.
+
+The "yes" here just indicates some level of cross-language support.  Obviously the different tools have different levels of support for other languages.  You should probably do your own research to see if the tool has robust support for the language you need.
+
+*Data structure*: Whether the tool places any restrictions on the classes it can serialize.  If this entry is empty, it means the tool will serialize any Java class.
+ * schema+gen: you write a schema file (in the tool's schema language) and the tool _generates_ Java classes that you must use
+ * annotate: the tool will let you use your own Java classes, but you need to annotate the Java classes to help the tool out
+ * optional annotate: the tool can serialize any Java class, but you can improve or configure the serialization through annotations
+
+The tools that generate code from a schema file vary a lot in the type of code they generate.  This affects the "create" time.
+ * very simple classes that allow you to directly manipulate fields
+ * classes with private fields and get/set methods
+ * classes whose instances are immutable -- helps reduce certain kinds of bugs
+
+The tools that generate code from a schema don't have equivalent schema languages.  Some schema languages are more expressive than others.  Some let you perform low-level optimizations.  Make sure you take a look at the different schema languages to see what each has to offer.
+
+*Serialization*: How much additional work the programmer has to do to serialize data.
+ * manual: The tool will take care of the low-level details of the format (like syntax) but you essentially have to write all the code to serialize your specific data structure.
+
+*Formats*: The primary format is listed first.  The binary formats usually have a human-readable alternative format as well, used for specifying data values by hand or for debugging.
+ * binary: some custom binary format.
+ * json: the JSON format.
+ * json-like: some custom text format that is similar to JSON/YAML/plist, etc.
+
+*Schema Change*: Whether the tool helps you maintain backward compatibility with older data values when you modify your schema.  A blank here means that you need to handle backwards compatibility yourself (i.e. read in the old data value, then write code to construct a new data value out of the old data)
+ * partial: some formats have limited support for adding/removing fields; for example, if older data values don't have that field, the newer deserialization code will fill in the gaps with default values
+
+= Tool Specifics =
+
+java (Java's built-in serialization functionality):
+ * Part of the reason it's slow is that it's the only format here that preserves non-tree structures.  To do this, the serializer keeps track of every object's identity, which is an expensive operation.
+
+java+ext:
+ * This is essentially manual serialization.  You have to write the code to serialize and deserialize an object.
+
+kryo:
+ * Need to register your classes with the serializer.  Roughly one line of code per class.
+ * You can "optimize" the serialization (faster speed, smaller size) by giving the serializer more information about your class, like which fields will never null, or whether a particular array will always be a certain size.
+
+protobuf (Google Protocol Buffers):
+ * The generated data classes are very heavy-weight.  Data values are immutable and are built by "Builder" objects that check the data for conformance to the schema.  This makes things safer and also accounts for why protobuf's "create" time is so high.
+ * <a href="http://code.google.com/apis/protocolbuffers/docs/proto.html">Schema language</a>
+   * Supports lists through "repeated" fields, which is a bit awkward.
+
+thrift (Apache Thrift):
+ * Very similar to protobuf.
+ * <a href="http://wiki.apache.org/thrift/Tutorial">Schema language</a>
+   * Supports "list", "set" and "map" types (ex: "map<string,int>").
+
+avro (Apache Avro):
+ * <a href="http://hadoop.apache.org/avro/docs/current/spec.html">Schema language</a>
+   * Specified in JSON, which is about twice as verbose as the other schema languages. There's an alternative schema syntax currently under development (GenAvro) that is more in line with the protobuf/thrift schema formats.
+   * Supports a "union" type (like C's union).
+   * Supports a "array" and "map" types.  The key for "map" is always a string, though.
+   * Supports a generic mode of operation, where record fields are stored (untyped) in maps instead of Java class fields.
+ * Avro's data structures use UTF-8 encoded strings (instead of Java's native UTF-16 encoded strings).  Its "create" times and post-deserialize times are so high because the benchmark converts to/from native Java strings.  In actual use, careful programming may allow you to avoid these conversions.
+
+cks:
+ * <a href="http://cakoose.com/cks/overview.html">Schema language</a>
+   * Based on algebraic data types (supports tagged unions).
+   * Supports parametric polymorphism (generics) for user-defined types.
+ * The text format supports JSON-like record syntax as well as XML-like markup syntax.
