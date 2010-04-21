@@ -118,7 +118,7 @@ This page tries to summarize the main non-performance-related differences betwee
    <td>yes</td>
    <td></td>
    <td></td>
-   <td>xml+abbrev</td>
+   <td>xml</td>
    <td></td>
 </tr>
 <tr>
