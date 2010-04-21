@@ -169,7 +169,7 @@ The tools that generate code from a schema don't have equivalent schema language
 = Tool Specifics =
 
 java (Java's built-in serialization functionality):
- * Part of the reason it's slow is that it's the only format here that preserves non-tree structures.  To do this, the serializer keeps track of every object's identity, which is an expensive operation.
+ * Part of the reason it's slow is that it's the only format here that preserves arbitrary object graphs (all the other serializers flatten graphs to trees).  To do this, the serializer keeps track of every object's identity, which is an expensive operation.
 
 java+ext:
  * This is essentially manual serialization.  You have to write the code to serialize and deserialize an object.
@@ -193,7 +193,7 @@ avro (Apache Avro):
    * Specified in JSON, which is about twice as verbose as the other schema languages. There's an alternative schema syntax currently under development (GenAvro) that is more in line with the protobuf/thrift schema formats.
    * Supports a "union" type (like C's union).
    * Supports a "array" and "map" types.  The key for "map" is always a string, though.
-   * Supports a generic mode of operation, where record fields are stored (untyped) in maps instead of Java class fields.
+ * Supports a generic mode of operation, where record fields are stored (untyped) in maps instead of Java class fields.
  * Avro's data structures use UTF-8 encoded strings (instead of Java's native UTF-16 encoded strings).  Its "create" times and post-deserialize times are so high because the benchmark converts to/from native Java strings.  In actual use, careful programming may allow you to avoid these conversions.
 
 cks:
