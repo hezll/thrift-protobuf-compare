@@ -77,7 +77,7 @@ This page tries to summarize the main non-performance-related differences betwee
    <td>json/jackson</td>
    <td>yes</td>
    <td></td>
-   <td>manual</td>
+   <td>manual++</td>
    <td>json+abbrev</td>
    <td></td>
 </tr>
@@ -103,6 +103,38 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
    <td>manual</td>
    <td>xml+abbrev</td>
+   <td></td>
+</tr>
+<tr>
+   <td>*/stax-xstream</td>
+   <td>yes</td>
+   <td></td>
+   <td></td>
+   <td>xml+abbrev</td>
+   <td></td>
+</tr>
+<tr>
+   <td>*/stax</td>
+   <td>yes</td>
+   <td></td>
+   <td>manual++</td>
+   <td>xml+abbrev</td>
+   <td></td>
+</tr>
+<tr>
+   <td>*/stax-xstream+</td>
+   <td>yes</td>
+   <td></td>
+   <td>manual</td>
+   <td>xml+abbrev</td>
+   <td></td>
+</tr>
+<tr>
+   <td>xml-fi/*</td>
+   <td>yes</td>
+   <td></td>
+   <td>?</td>
+   <td>binary</td>
    <td></td>
 </tr>
 </table>
