@@ -106,15 +106,7 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
 </tr>
 <tr>
-   <td>*/stax-xstream</td>
-   <td>yes</td>
-   <td></td>
-   <td></td>
-   <td>xml+abbrev</td>
-   <td></td>
-</tr>
-<tr>
-   <td>*/stax</td>
+   <td>.../stax</td>
    <td>yes</td>
    <td></td>
    <td>manual++</td>
@@ -122,7 +114,15 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
 </tr>
 <tr>
-   <td>*/stax-xstream+</td>
+   <td>.../stax-xstream</td>
+   <td>yes</td>
+   <td></td>
+   <td></td>
+   <td>xml+abbrev</td>
+   <td></td>
+</tr>
+<tr>
+   <td>.../stax-xstream+</td>
    <td>yes</td>
    <td></td>
    <td>manual</td>
@@ -130,11 +130,11 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
 </tr>
 <tr>
-   <td>xml-fi/*</td>
+   <td>xml-fi/...</td>
    <td>yes</td>
    <td></td>
-   <td>?</td>
-   <td>binary</td>
+   <td></td>
+   <td>binary xml</td>
    <td></td>
 </tr>
 </table>
