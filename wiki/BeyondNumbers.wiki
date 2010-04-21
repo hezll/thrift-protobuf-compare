@@ -97,6 +97,14 @@ This page tries to summarize the main non-performance-related differences betwee
    <td>json+abbrev</td>
    <td></td>
 </tr>
+<tr>
+   <td>xml/javolution</td>
+   <td>yes</td>
+   <td></td>
+   <td>manual</td>
+   <td>xml+abbrev</td>
+   <td></td>
+</tr>
 </table>
 
 *Language-neutral*: Whether the tool is a viable option if you want to be language-neutral.  For example, though it is _possible_ for other languages to consume Java's built-in serialization format, it is definitely not convenient -- that's why Java's built-in serialization format is not listed as being language-neutral.
