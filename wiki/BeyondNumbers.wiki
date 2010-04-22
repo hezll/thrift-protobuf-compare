@@ -189,13 +189,13 @@ java-built-in (java.io.Serializable):
  * Part of the reason it's slow is that it's the only format here that preserves arbitrary object graphs (all the other serializers flatten graphs to trees).  To do this, the serializer keeps track of every object's identity, which is an expensive operation.
 
 java+manual:
- * You have to write the code to serialize and deserialize your classes using DataInputStream and DataOutputStream.
+ * You have to write the code to serialize and deserialize your classes using !DataInputStream and !DataOutputStream.
 
 kryo:
  * Registering the classes to be serialized is optional, but reduces serialized size. Registration requires roughly one line of code per class.
  * Uses reflection or runtime code generation to do essentially the same thing as "java+manual".
  * You can "optimize" the serialization (faster speed, smaller size) by giving the serializer more information about your class, like which fields will never null, or whether a particular array will always be a certain size.
- * Supports running on <a href="http://www.android.com/">Android</a>.
+ * Supports running on both the desktop and <a href="http://www.android.com/">Android</a>.
  * Pluggable serialization allows binary output to be customized. This also allows for efficient serialization based on specific needs (eg, forward/backward compatibility, cyclic graph handling, etc). The drawback to this flexibility is that it is difficult for non-Java code to consume the output.
 
 protobuf (Google Protocol Buffers):
