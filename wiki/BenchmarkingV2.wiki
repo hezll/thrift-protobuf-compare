@@ -1,0 +1,110 @@
+= Intro =
+
+Benchmarks can be very misleading.
+ * These tests use a specific data value (DataStructuresV2).  A different data value will yield different results.
+ * The tools have different sets of features (BeyondNumbers).  Some of these features make things safer or easier, but have a performance cost.
+ * Different hardware and software environments will yield different results.
+ * We don't take memory usage into account.
+
+In short, before you make a decision on which tool to use, make sure you try it out in an environment you care about.  To start, download the benchmark code and run it on _your_ hardware with data values _you_ care about.
+
+== Setup ==
+
+Hardware: Intel Core 2 Duo
+Software: Java 1.6.0-17, Mac OS 10.5
+JVM options: -Xmx16m -server
+
+Data value being tested: DataStructuresV2.
+
+Version of the benchmarking code: <a href="http://code.google.com/p/thrift-protobuf-compare/source/browse/?r=187">Revision 187</a>
+
+Methodology:
+ * Before taking measurements, we warm things up by running the test several times.
+ * For a test, measure the time taken to perform 2000 operations (serialization, deserialization, etc.).  Then divide the result by 2000.
+ * Run each test 100 times and report the best result.
+ * Look at the code for more details (tpc/src/serializers/BenchmarkRunner.java)
+
+Tool Versions:
+ * [http://code.google.com/p/protobuf/ protobuf]: 2.3.0
+ * [http://incubator.apache.org/thrift/ thrift]: 0.2.0
+ * [http://hadoop.apache.org/avro/ avro]: 1.3.2
+ * [http://code.google.com/p/kryo/ kryo]: 1.0
+ * [http://hessian.caucho.com/ hessian]: 4.0.3
+ * [http://activemq.apache.org/ activemq-protobuf]: 1.1-SNAPSHOT
+ * [http://code.google.com/p/google-gson/ google-gson]: 1.4
+ * [http://jackson.codehaus.org/ jackson]: 1.5.1
+ * [http://javolution.org/ javolution]: 5.2.6
+ * [http://code.google.com/p/protostuff/ protostuff]: 1.0.0.M0
+ * [http://woodstox.codehaus.org/ woodstox]: 4.0.7
+ * [http://www.cowtowncoder.com/hatchery/aalto/index.html aalto]: 0.9.5
+ * [http://fi.dev.java.net/ fast-infoset]: 1.2.6
+ * [http://xstream.codehaus.org/ xstream]: 1.3.1
+
+= Charts =
+
+Omitted from the first three charts: json/google-gson and scala. These serializers are so slow, they would break the scale of our charts. See below for the naked data.
+
+== Total Time [total] ==
+
+Create an object, serialize it to a byte array, then deserialize it back to an object.
+
+CHART GOES HERE
+
+== Serialization Time [ser] ==
+
+Create an object, serialize it to a byte array.
+
+CHART GOES HERE
+
+Notes:
+ * Java's built-in serializer faithfully represents arbitrary object graphs, which hurts performance.  All the other serializers flatten the structure out to a tree.
+
+== Deserialization Time [deser] ==
+
+Often the most expensive operation.  To make a fair comparison, all fields of the deserialized instances are accessed - this forces lazy deserializers to really do their work. The raw data below shows additional measurements for deserialization.
+
+CHART GOES HERE
+
+== Serialization Size [size] ==
+
+The size of the serialized data.  These numbers may vary depending on the exact data value being used.
+
+CHART GOES HERE
+
+Notes:
+ * Java's built-in serializer stores the full class name in serialized form.  So you don't need to know ahead of time what kind of object you're reading in.
+ * The 'scala' test, which uses Java's built-in serialization, yields a larger serialized representation because it usually creates more Java classes under the hood.
+
+== Serialization Compressed Size [size+dfl] ==
+
+The size of the serialized data once compressed with Java's built-in implementation of DEFLATE (zlib).
+
+CHART GOES HERE
+
+== Object Creation Time [create] ==
+
+Object creation is not so meaningful since it takes in average 100 nano to create an object.  However, the different tools vary in how "fancy" their objects are.  Some just create a plain Java class and let you access fields directly, while others have set/get methods, while others use the "builder" pattern.
+
+CHART GOES HERE
+
+Notes:
+ * Protobuf and Thrift use the "builder" pattern to create objects.
+ * Avro stores Strings in UTF8 form.  The time taken to convert from Java "String" values to UTF-8 is included under "create", "ser", "deser+shal", and "deser+deep", which isn't quite representative of real-world usage.  Real code that uses Avro might be able to keep strings in UTF-8 form, thus avoiding the need to convert back and forth (in which case the "ser+same" and "deser" results might be more accurate reflections of Avro's performance).
+
+= Numbers =
+
+Times are in nanoseconds, sizes are in bytes.
+{{{
+NUMBERS GO HERE
+}}}
+
+Columns:
+ * create: create an object (using the classes specified by the serialization tool)
+ * ser: create an object and serialize it
+ * +same: serialize the same object (i.e. doesn't include creation time)
+ * deser: deserialize an object
+ * +shal: deserialize an object and access the top-level fields
+ * +deep: deserialize an object and access all the fields
+ * total: create + serialize + deserialize and access all fields
+ * size: the size of the serialized data
+ * +dfl: the size of the serialized data when compressed with Java's built-in implementation of DEFLATE (zlib)
