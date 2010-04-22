@@ -44,13 +44,13 @@ Tool Versions:
 
 Omitted from the first three charts: json/google-gson and scala. These serializers are so slow, they would break the scale of our charts. See below for the naked data.
 
-== Total Time [total] ==
+== Total Time ("total") ==
 
 Create an object, serialize it to a byte array, then deserialize it back to an object.
 
 CHART GOES HERE
 
-== Serialization Time [ser] ==
+== Serialization Time ("ser") ==
 
 Create an object, serialize it to a byte array.
 
@@ -59,13 +59,13 @@ CHART GOES HERE
 Notes:
  * Java's built-in serializer faithfully represents arbitrary object graphs, which hurts performance.  All the other serializers flatten the structure out to a tree.
 
-== Deserialization Time [deser] ==
+== Deserialization Time ("deser") ==
 
 Often the most expensive operation.  To make a fair comparison, all fields of the deserialized instances are accessed - this forces lazy deserializers to really do their work. The raw data below shows additional measurements for deserialization.
 
 CHART GOES HERE
 
-== Serialization Size [size] ==
+== Serialized Size ("size") ==
 
 The size of the serialized data.  These numbers may vary depending on the exact data value being used.
 
@@ -75,13 +75,13 @@ Notes:
  * Java's built-in serializer stores the full class name in serialized form.  So you don't need to know ahead of time what kind of object you're reading in.
  * The 'scala' test, which uses Java's built-in serialization, yields a larger serialized representation because it usually creates more Java classes under the hood.
 
-== Serialization Compressed Size [size+dfl] ==
+== Serialization Compressed Size ("size+dfl") ==
 
-The size of the serialized data once compressed with Java's built-in implementation of DEFLATE (zlib).
+The size of the serialized data compressed with Java's built-in implementation of DEFLATE (zlib).
 
 CHART GOES HERE
 
-== Object Creation Time [create] ==
+== Object Creation Time ("create") ==
 
 Object creation is not so meaningful since it takes in average 100 nano to create an object.  However, the different tools vary in how "fancy" their objects are.  Some just create a plain Java class and let you access fields directly, while others have set/get methods, while others use the "builder" pattern.
 
@@ -107,4 +107,4 @@ Columns:
  * +deep: deserialize an object and access all the fields
  * total: create + serialize + deserialize and access all fields
  * size: the size of the serialized data
- * +dfl: the size of the serialized data when compressed with Java's built-in implementation of DEFLATE (zlib)
+ * +dfl: the size of the serialized data compressed with Java's built-in implementation of DEFLATE (zlib)
