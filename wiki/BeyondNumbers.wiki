@@ -29,7 +29,7 @@ This page tries to summarize the main non-performance-related differences betwee
    <td>java-manual</td>
    <td></td>
    <td></td>
-   <td>manual++</td>
+   <td>manual</td>
    <td>binary</td>
    <td></td>
 </tr>
