@@ -18,7 +18,7 @@ This page tries to summarize the main non-performance-related differences betwee
    <th>Schema Change</th>
 </tr>
 <tr>
-   <td>java</td>
+   <td>java-built-in</td>
    <td></td>
    <td></td>
    <td></td>
@@ -26,7 +26,23 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
 </tr>
 <tr>
-   <td>java-ext</td>
+   <td>java-manual</td>
+   <td></td>
+   <td></td>
+   <td>manual</td>
+   <td>binary</td>
+   <td></td>
+</tr>
+<tr>
+   <td>scala/java-built-in</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>binary</td>
+   <td></td>
+</tr>
+<tr>
+   <td>scala/sbinary</td>
    <td></td>
    <td></td>
    <td>manual</td>
@@ -157,6 +173,7 @@ The tools that generate code from a schema don't have equivalent schema language
 
 *Serialization*: How much additional work the programmer has to do to serialize data.
  * manual: The tool will take care of the low-level details of the format (like syntax) but you essentially have to write all the code to serialize your specific data structure.
+ * manual++: The same thing as 'manual', but even more tedious.
 
 *Formats*: The primary format is listed first.  The binary formats usually have a human-readable alternative format as well, used for specifying data values by hand or for debugging.
  * binary: some custom binary format.
@@ -168,14 +185,15 @@ The tools that generate code from a schema don't have equivalent schema language
 
 = Tool Specifics =
 
-java (Java's built-in serialization functionality):
+java-built-in (java.io.Serializable):
  * Part of the reason it's slow is that it's the only format here that preserves arbitrary object graphs (all the other serializers flatten graphs to trees).  To do this, the serializer keeps track of every object's identity, which is an expensive operation.
 
-java+ext:
- * This is essentially manual serialization.  You have to write the code to serialize and deserialize an object.
+java+manual:
+ * You have to write the code to serialize and deserialize your classes using DataInputStream and DataOutputStream.
 
 kryo:
  * Need to register your classes with the serializer.  Roughly one line of code per class.
+ * Uses runtime code generation to do essentially the same thing as "java+manual".
  * You can "optimize" the serialization (faster speed, smaller size) by giving the serializer more information about your class, like which fields will never null, or whether a particular array will always be a certain size.
 
 protobuf (Google Protocol Buffers):
