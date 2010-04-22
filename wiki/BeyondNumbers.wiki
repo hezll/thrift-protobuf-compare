@@ -29,7 +29,7 @@ This page tries to summarize the main non-performance-related differences betwee
    <td>java-manual</td>
    <td></td>
    <td></td>
-   <td>manual</td>
+   <td>manual++</td>
    <td>binary</td>
    <td></td>
 </tr>
@@ -55,7 +55,7 @@ This page tries to summarize the main non-performance-related differences betwee
    <td>optional annotate</td>
    <td></td>
    <td>binary</td>
-   <td></td>
+   <td>partial</td>
 </tr>
 <tr>
    <td>protobuf</td>
@@ -159,7 +159,7 @@ This page tries to summarize the main non-performance-related differences betwee
 
 The "yes" here just indicates some level of cross-language support.  Obviously the different tools have different levels of support for other languages.  You should probably do your own research to see if the tool has robust support for the language you need.
 
-*Data structure*: Whether the tool places any restrictions on the classes it can serialize.  If this entry is empty, it means the tool will serialize any Java class.
+*Data structure*: Whether the tool places any restrictions on the classes it can serialize.  If this entry is empty, it means the tool will generally serialize any Java class.
  * schema+gen: you write a schema file (in the tool's schema language) and the tool _generates_ Java classes that you must use
  * annotate: the tool will let you use your own Java classes, but you need to annotate the Java classes to help the tool out
  * optional annotate: the tool can serialize any Java class, but you can improve or configure the serialization through annotations
@@ -192,9 +192,11 @@ java+manual:
  * You have to write the code to serialize and deserialize your classes using DataInputStream and DataOutputStream.
 
 kryo:
- * Need to register your classes with the serializer.  Roughly one line of code per class.
- * Uses runtime code generation to do essentially the same thing as "java+manual".
+ * Registering the classes to be serialized is optional, but reduces serialized size. Registration requires roughly one line of code per class.
+ * Uses reflection or runtime code generation to do essentially the same thing as "java+manual".
  * You can "optimize" the serialization (faster speed, smaller size) by giving the serializer more information about your class, like which fields will never null, or whether a particular array will always be a certain size.
+ * Supports running on <a href="http://www.android.com/">Android</a>.
+ * Pluggable serialization allows binary output to be customized. This also allows for efficient serialization based on specific needs (eg, forward/backward compatibility, cyclic graph handling, etc). The drawback to this flexibility is that it is difficult for non-Java code to consume the output.
 
 protobuf (Google Protocol Buffers):
  * The generated data classes are very heavy-weight.  Data values are immutable and are built by "Builder" objects that check the data for conformance to the schema.  This makes things safer and also accounts for why protobuf's "create" time is so high.
