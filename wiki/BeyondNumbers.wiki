@@ -153,11 +153,11 @@ java-built-in:
  * Part of the reason it's slow is that it's the only test here that preserves arbitrary object graphs (all the other serializers flatten graphs to trees).  To do this, the serializer keeps track of every object's identity, which is an expensive operation.
 
 java-manual:
- * Hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JavaManual.java?r=203#25 JavaManual.java, lines 25-144]
+ * Hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JavaManual.java?r=206#25 JavaManual.java, lines 25-144]
 
 kryo:
- * We register each class with Kryo, an optional step that improves performance. [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/Kryo.java?r=203#95 Kryo.java, lines 95-100]
- * The "kryo-opt" test further improves performance by giving the serializer more information about the data values being serialized [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/Kryo.java?r=203#105 Kryo.java, lines 105-130]
+ * We register each class with Kryo, an optional step that improves performance. [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/Kryo.java?r=206#95 Kryo.java, lines 95-100]
+ * The "kryo-opt" test further improves performance by giving the serializer more information about the data values being serialized [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/Kryo.java?r=206#105 Kryo.java, lines 105-130]
  * Can be configured to use custom serialization code, but we use the default Kryo serialization code.
 
 protobuf (Google Protocol Buffers):
@@ -180,16 +180,16 @@ avro (Apache Avro):
  * Avro's data structures use UTF-8 encoded strings (instead of Java's native UTF-16 encoded strings).  Its "create" times and post-deserialize times are so high because the benchmark converts to/from native Java strings.  In actual use, careful programming may allow you to avoid these conversions.
 
 json/jackson:
- * Lots of hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JsonJackson.java?r=203#62 JsonJackson.java, lines 62-292], with additional support code in [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/data/media/FieldMapping.java?r=203 FieldMapping.java] 
+ * Lots of hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JsonJackson.java?r=206#62 JsonJackson.java, lines 62-292], with additional support code in [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/data/media/FieldMapping.java?r=206 FieldMapping.java] 
  * Uses _abbreviated names_.
  * "json/jackson-databind" uses automatic serialization and full names.
 
 xml/javolution:
- * Hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JavolutionXml.java?r=203 JavolutionXml.java]
+ * Hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JavolutionXml.java?r=206 JavolutionXml.java]
  * Uses _abbreviated names_.
 
 xstream:
  * The non-"+c" variants use XStream's built-in object-to-XML conversion (no extra code, full names).
- * The "+c" variants use a hand-written conversion function with _abbreviated names_. [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/XStream.java?r=203#105 XStream.java, lines 105-257]
+ * The "+c" variants use a hand-written conversion function with _abbreviated names_. [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/XStream.java?r=206#105 XStream.java, lines 105-257]
  * "xml/xstream" uses XStream's own XML reader/writer.
  * The "xml/...-xstream" variants use various StAX implementations to do the XML reading/writing.
