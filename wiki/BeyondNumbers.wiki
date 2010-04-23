@@ -149,7 +149,7 @@ The tools that generate code from a schema don't have equivalent schema language
 = Tool Specifics =
 
 java-built-in:
- * ObjectOutput.writeObject(java.io.Serializable)
+ * !ObjectOutput.writeObject(java.io.Serializable)
  * Part of the reason it's slow is that it's the only test here that preserves arbitrary object graphs (all the other serializers flatten graphs to trees).  To do this, the serializer keeps track of every object's identity, which is an expensive operation.
 
 java-manual:
@@ -181,15 +181,15 @@ avro (Apache Avro):
 
 json/jackson:
  * Lots of hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JsonJackson.java?r=203#62 JsonJackson.java, lines 62-292], with additional support code in [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/data/media/FieldMapping.java?r=203 FieldMapping.java] 
- * Uses abbreviated names.
+ * Uses _abbreviated names_.
  * "json/jackson-databind" uses automatic serialization and full names.
 
 xml/javolution:
  * Hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JavolutionXml.java?r=203 JavolutionXml.java]
- * Uses abbreviated names.
+ * Uses _abbreviated names_.
 
 xstream:
  * The non-"+c" variants use XStream's built-in object-to-XML conversion (no extra code, full names).
  * The "+c" variants use a hand-written conversion function with _abbreviated names_. [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/XStream.java?r=203#105 XStream.java, lines 105-257]
  * "xml/xstream" uses XStream's own XML reader/writer.
- * The "xml/*-xstream" variants use various StAX implementations to do the XML reading/writing.
+ * The "xml/...-xstream" variants use various StAX implementations to do the XML reading/writing.
