@@ -1,12 +1,10 @@
-*THIS PAGE IS INACCURATE*.  This page is currently under construction.  The data here is not accurate (yet).  Once we think we have accurate data, this notice will be removed.
-
 = Feature Comparison =
 
-Performance numbers are useful, but there are many other important factors you should take into account before picking a serialization tool.  For example:
+Performance numbers are useful, but they can be misleading.  For example:
  * some tools perform more safety checks than others -- these checks might be worth the performance hit
  * some tools will let you serialize your own hand-written Java classes; others require that you use Java classes generated from a schema file
 
-This page tries to summarize the main non-performance-related differences between the tools.
+This page tries to list the tool features that are relevant to interpreting our benchmarking results.  This is _not_ meant to be an exhaustive list of each tool's features.  For example, our "json/jackson" test abbreviated field names -- this doesn't mean that the Jackson JSON library requires the use of abbreviated field names.
 
 <table border="1" cellspacing="0">
 <tr>
@@ -15,7 +13,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <th>Data Structure</th>
    <th>Serialization</th>
    <th>Formats</th>
-   <th>Schema Change</th>
 </tr>
 <tr>
    <td>java-built-in</td>
@@ -23,7 +20,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
    <td></td>
    <td>binary</td>
-   <td></td>
 </tr>
 <tr>
    <td>java-manual</td>
@@ -31,7 +27,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
    <td>manual</td>
    <td>binary</td>
-   <td></td>
 </tr>
 <tr>
    <td>scala/java-built-in</td>
@@ -39,7 +34,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
    <td></td>
    <td>binary</td>
-   <td></td>
 </tr>
 <tr>
    <td>scala/sbinary</td>
@@ -47,7 +41,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
    <td>manual</td>
    <td>binary</td>
-   <td></td>
 </tr>
 <tr>
    <td>kryo</td>
@@ -55,7 +48,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <td>optional annotate</td>
    <td></td>
    <td>binary</td>
-   <td>partial</td>
 </tr>
 <tr>
    <td>protobuf</td>
@@ -63,7 +55,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <td>schema+gen</td>
    <td></td>
    <td>binary, json</td>
-   <td>partial</td>
 </tr>
 <tr>
    <td>thrift</td>
@@ -71,7 +62,13 @@ This page tries to summarize the main non-performance-related differences betwee
    <td>schema+gen</td>
    <td></td>
    <td>binary, json-like</td>
-   <td>partial</td>
+</tr>
+<tr>
+   <td>protobuf/activemq-alt</td>
+   <td>yes</td>
+   <td>schema+gen</td>
+   <td></td>
+   <td>binary, json</td>
 </tr>
 <tr>
    <td>avro</td>
@@ -79,15 +76,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <td>schema+gen</td>
    <td></td>
    <td>binary, json</td>
-   <td>partial</td>
-</tr>
-<tr>
-   <td>cks</td>
-   <td>yes</td>
-   <td>schema+gen</td>
-   <td></td>
-   <td>binary, json-like</td>
-   <td></td>
 </tr>
 <tr>
    <td>json/jackson</td>
@@ -95,7 +83,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
    <td>manual++</td>
    <td>json+abbrev</td>
-   <td></td>
 </tr>
 <tr>
    <td>json/jackson-databind</td>
@@ -103,15 +90,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
    <td></td>
    <td>json</td>
-   <td></td>
-</tr>
-<tr>
-   <td>json/twolattes</td>
-   <td>yes</td>
-   <td>annotate</td>
-   <td></td>
-   <td>json+abbrev</td>
-   <td></td>
 </tr>
 <tr>
    <td>xml/javolution</td>
@@ -119,31 +97,20 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
    <td>manual</td>
    <td>xml+abbrev</td>
-   <td></td>
 </tr>
 <tr>
-   <td>.../stax</td>
-   <td>yes</td>
-   <td></td>
-   <td>manual++</td>
-   <td>xml+abbrev</td>
-   <td></td>
-</tr>
-<tr>
-   <td>.../stax-xstream</td>
+   <td>...xstream</td>
    <td>yes</td>
    <td></td>
    <td></td>
    <td>xml</td>
-   <td></td>
 </tr>
 <tr>
-   <td>.../stax-xstream+</td>
+   <td>...xstream+c</td>
    <td>yes</td>
    <td></td>
    <td>manual</td>
    <td>xml+abbrev</td>
-   <td></td>
 </tr>
 <tr>
    <td>xml-fi/...</td>
@@ -151,7 +118,6 @@ This page tries to summarize the main non-performance-related differences betwee
    <td></td>
    <td></td>
    <td>binary xml</td>
-   <td></td>
 </tr>
 </table>
 
@@ -180,44 +146,50 @@ The tools that generate code from a schema don't have equivalent schema language
  * json: the JSON format.
  * json-like: some custom text format that is similar to JSON/YAML/plist, etc.
 
-*Schema Change*: Whether the tool helps you maintain backward compatibility with older data values when you modify your schema.  A blank here means that you need to handle backwards compatibility yourself (i.e. read in the old data value, then write code to construct a new data value out of the old data)
- * partial: some formats have limited support for adding/removing fields; for example, if older data values don't have that field, the newer deserialization code will fill in the gaps with default values
-
 = Tool Specifics =
 
-java-built-in (java.io.Serializable):
- * Part of the reason it's slow is that it's the only format here that preserves arbitrary object graphs (all the other serializers flatten graphs to trees).  To do this, the serializer keeps track of every object's identity, which is an expensive operation.
+java-built-in:
+ * ObjectOutput.writeObject(java.io.Serializable)
+ * Part of the reason it's slow is that it's the only test here that preserves arbitrary object graphs (all the other serializers flatten graphs to trees).  To do this, the serializer keeps track of every object's identity, which is an expensive operation.
 
-java+manual:
- * You have to write the code to serialize and deserialize your classes using !DataInputStream and !DataOutputStream.
+java-manual:
+ * Hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JavaManual.java?r=203#25 JavaManual.java, lines 25-144]
 
 kryo:
- * Registering the classes to be serialized is optional, but reduces serialized size. Registration requires roughly one line of code per class.
- * Uses reflection or runtime code generation to do essentially the same thing as "java+manual".
- * You can "optimize" the serialization (faster speed, smaller size) by giving the serializer more information about your class, like which fields will never null, or whether a particular array will always be a certain size.
- * Supports running on both the desktop and <a href="http://www.android.com/">Android</a>.
- * Pluggable serialization allows binary output to be customized. This also allows for efficient serialization based on specific needs (eg, forward/backward compatibility, cyclic graph handling, etc). The drawback to this flexibility is that it is difficult for non-Java code to consume the output.
+ * We register each class with Kryo, an optional step that improves performance. [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/Kryo.java?r=203#95 Kryo.java, lines 95-100]
+ * The "kryo-opt" test further improves performance by giving the serializer more information about the data values being serialized [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/Kryo.java?r=203#105 Kryo.java, lines 105-130]
+ * Can be configured to use custom serialization code, but we use the default Kryo serialization code.
 
 protobuf (Google Protocol Buffers):
- * The generated data classes are very heavy-weight.  Data values are immutable and are built by "Builder" objects that check the data for conformance to the schema.  This makes things safer and also accounts for why protobuf's "create" time is so high.
+ * The generated data classes are relatively heavy-weight.  Data values are immutable and are built by "Builder" objects that check the data for conformance to the schema.  This makes things safer and also accounts for why protobuf's "create" time is so high.
+ * We set optimize_for=SPEED
  * <a href="http://code.google.com/apis/protocolbuffers/docs/proto.html">Schema language</a>
-   * Supports lists through "repeated" fields, which is a bit awkward.
+
+protobuf/activemq-alt:
+ * Java-only protobuf-format-compatible implementation from the ActiveMQ project.
+ * We use the "alternative" bindings generator, which parses the input on-demand (i.e. when the actual fields are accessed).
 
 thrift (Apache Thrift):
  * Very similar to protobuf.
+ * "thrift" uses the standard TBinaryProtocol serializer.
+ * "thrift-compact" uses the newer TCompactProtocol serializer.
  * <a href="http://wiki.apache.org/thrift/Tutorial">Schema language</a>
-   * Supports "list", "set" and "map" types (ex: "map<string,int>").
 
 avro (Apache Avro):
  * <a href="http://hadoop.apache.org/avro/docs/current/spec.html">Schema language</a>
-   * Specified in JSON, which is about twice as verbose as the other schema languages. There's an alternative schema syntax currently under development (GenAvro) that is more in line with the protobuf/thrift schema formats.
-   * Supports a "union" type (like C's union).
-   * Supports a "array" and "map" types.  The key for "map" is always a string, though.
- * Supports a generic mode of operation, where record fields are stored (untyped) in maps instead of Java class fields.
  * Avro's data structures use UTF-8 encoded strings (instead of Java's native UTF-16 encoded strings).  Its "create" times and post-deserialize times are so high because the benchmark converts to/from native Java strings.  In actual use, careful programming may allow you to avoid these conversions.
 
-cks:
- * <a href="http://cakoose.com/cks/overview.html">Schema language</a>
-   * Based on algebraic data types (supports tagged unions).
-   * Supports parametric polymorphism (generics) for user-defined types.
- * The text format supports JSON-like record syntax as well as XML-like markup syntax.
+json/jackson:
+ * Lots of hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JsonJackson.java?r=203#62 JsonJackson.java, lines 62-292], with additional support code in [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/data/media/FieldMapping.java?r=203 FieldMapping.java] 
+ * Uses abbreviated names.
+ * "json/jackson-databind" uses automatic serialization and full names.
+
+xml/javolution:
+ * Hand-written serialization code: [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/JavolutionXml.java?r=203 JavolutionXml.java]
+ * Uses abbreviated names.
+
+xstream:
+ * The non-"+c" variants use XStream's built-in object-to-XML conversion (no extra code, full names).
+ * The "+c" variants use a hand-written conversion function with _abbreviated names_. [http://code.google.com/p/thrift-protobuf-compare/source/browse/branches/kannan/tpc/src/serializers/XStream.java?r=203#105 XStream.java, lines 105-257]
+ * "xml/xstream" uses XStream's own XML reader/writer.
+ * The "xml/*-xstream" variants use various StAX implementations to do the XML reading/writing.
