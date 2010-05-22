@@ -1,3 +1,4 @@
+#labels Featured
 *WARNING*: Benchmarks can be misleading.
  * These tests use a specific data value (DataStructuresV2).  A different data value will yield different results.
  * The tools have different sets of features (BeyondNumbers).  Some of these features make things safer or easier, but come with a performance cost.
@@ -8,13 +9,13 @@ In short, before you make a decision on which tool to use, make sure you try it 
 
 == Setup ==
 
-Hardware: Intel Core 2 Duo
-Software: Sun JRE 1.6.0-17 (64-bit server VM), Mac OS 10.5
+Hardware: Intel Core 2 Quad
+Software: Sun JRE 1.6.0_20 (64-bit server VM), Ubuntu 9.10
 JVM options: -Xmx16m -server
 
 Data value being tested: DataStructuresV2.
 
-Version of the benchmarking code: <a href="http://code.google.com/p/thrift-protobuf-compare/source/browse/?r=206#svn/branches/kannan/tpc/src/serializers">Revision 206</a>
+Version of the benchmarking code: <a href="http://github.com/eishay/jvm-serializers/tree/43c27eda57234f8b103ef81aaba7bf88c06a4bd2/tpc">Git tree</a>
 
 Methodology:
  * Before taking measurements, we warm things up by running the test several times.
@@ -34,7 +35,7 @@ Tool Versions ([http://code.google.com/p/thrift-protobuf-compare/source/browse/?
  * [http://code.google.com/p/google-gson/ google-gson] 1.4
  * [http://jackson.codehaus.org/ jackson] 1.5.1
  * [http://javolution.org/ javolution] 5.2.6
- * [http://code.google.com/p/protostuff/ protostuff] 1.0.0.M0
+ * [http://code.google.com/p/protostuff/ protostuff] 1.0.0.M1
  * [http://woodstox.codehaus.org/ woodstox] 4.0.7
  * [http://www.cowtowncoder.com/hatchery/aalto/index.html aalto] 0.9.5
  * [http://fi.dev.java.net/ fast-infoset] 1.2.6
@@ -46,20 +47,20 @@ Tool Versions ([http://code.google.com/p/thrift-protobuf-compare/source/browse/?
 
 Create an object, serialize it to a byte array, then deserialize it back to an object.
 
-<img src='http://chart.apis.google.com/chart?chtt=total&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x422&chd=t:3668,4429,4665,6841,7398,8098,9281,9458,9462,10438,10882,11139,12595,15330,18107,21623,34185,40346,41445,51684,83363,125457,154259,240137,240237,241978,243174,245680&chds=0,270248.55000000005&chxt=y&chxl=0:|xml-fi%2Fsun-xstream|xml%2Fwoodstox-xstream|json%2Fgoogle-gson|xml%2Fxstream|xml%2Faalto-xstream|json%2Fprotobuf|scala%2Fjava-built-in|java-built-in|xml%2Fxstream%2Bc|xml-fi%2Fsun-xstream%2Bc|xml%2Fwoodstox-xstream%2Bc|xml%2Faalto-xstream%2Bc|hessian|json%2Fjackson-databind|xml%2Fjavolution|avro-generic|json%2Fprotostuff|avro|json%2Fprotostuff-numeric|json%2Fjackson|thrift-compact|thrift|scala%2Fsbinary|protobuf|protobuf%2Factivemq%2Balt|kryo|kryo-opt|java-manual&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=7,0,7&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=total&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x426&chd=t:3234,4375,4583,5094,5712,6949,7199,7817,9228,9532,11160,11265,12575,12698,13233,14117,14950,16244,17187,23282,28258,31018,37012,43989,61663,74099,113707,141689,218143,225905,227399,227943,228237&chds=0,251061.7483&chxt=y&chxl=0:|woodstox-xstream|fastinfo-xstream|xml%2Fxstream|aalto-xstream|json%2Fgoogle-gson|json%2Fprotobuf|scala%2Fjava-built-in|java-built-in|xml%2Fxstream%2Bc|fastinfo-xstream%2Bc|woodstox-xstream%2Bc|xml%2Fmanual-fastinfo|aalto-xstream%2Bc|hessian|json%2Fjackson-databind|xml%2Fmanual-woodstox|xml%2Fjavolution|json%2Fprotostuff-runtime|avro-generic|json%2Fprotostuff-core|avro|json%2Fjackson-manual|xml%2Fmanual-aalto|thrift-compact|thrift|scala%2Fsbinary|protobuf%2Factivemq%2Balt|protobuf|protobuf%2Fprotostuff-runtime|protobuf%2Fprotostuff-core|kryo|kryo-opt|java-manual&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=6,0,6&nonsense=aaa.png'/>
 
 == Serialization Time ("ser") ==
 
 Create an object, serialize it to a byte array.
  * Java's built-in serializer faithfully represents arbitrary object graphs, which hurts performance.  All the other serializers flatten the structure out to a tree.
 
-<img src='http://chart.apis.google.com/chart?chtt=ser&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x422&chd=t:1805,2013,2192,3875,4052,4087,4305,4400,4573,4734,5022,5254,5701,6099,7241,8132,10671,12726,13825,15153,19126,20985,21858,93485,94240,97629,101644,115753&chds=0,127328.30000000002&chxt=y&chxl=0:|xml-fi%2Fsun-xstream|json%2Fgoogle-gson|xml%2Fxstream|xml%2Fwoodstox-xstream|xml%2Faalto-xstream|json%2Fprotobuf|scala%2Fjava-built-in|xml-fi%2Fsun-xstream%2Bc|xml%2Fxstream%2Bc|java-built-in|xml%2Fwoodstox-xstream%2Bc|xml%2Faalto-xstream%2Bc|hessian|json%2Fjackson-databind|xml%2Fjavolution|avro-generic|json%2Fprotostuff|json%2Fprotostuff-numeric|json%2Fjackson|avro|scala%2Fsbinary|thrift|protobuf|protobuf%2Factivemq%2Balt|thrift-compact|kryo|kryo-opt|java-manual&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=7,0,7&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=ser&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x426&chd=t:1761,2021,2138,2637,2963,4249,4312,4327,4345,4377,4553,4662,5145,5575,6622,6804,7882,8553,10402,10898,11198,12916,13204,14205,15707,19990,20830,22375,83338,86101,88783,89309,105667&chds=0,116234.20325000002&chxt=y&chxl=0:|fastinfo-xstream|aalto-xstream|woodstox-xstream|xml%2Fxstream|json%2Fgoogle-gson|json%2Fprotobuf|scala%2Fjava-built-in|fastinfo-xstream%2Bc|xml%2Fxstream%2Bc|xml%2Fmanual-fastinfo|java-built-in|woodstox-xstream%2Bc|hessian|aalto-xstream%2Bc|json%2Fjackson-databind|json%2Fprotostuff-runtime|json%2Fprotostuff-core|xml%2Fmanual-woodstox|json%2Fjackson-manual|xml%2Fjavolution|avro-generic|avro|xml%2Fmanual-aalto|scala%2Fsbinary|thrift-compact|thrift|protobuf%2Factivemq%2Balt|protobuf|protobuf%2Fprotostuff-runtime|protobuf%2Fprotostuff-core|kryo|kryo-opt|java-manual&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=6,0,6&nonsense=aaa.png'/>
 
 == Deserialization Time ("deser+deep") ==
 
 Often the most expensive operation.  To make a fair comparison, all fields of the deserialized instances are accessed - this forces lazy deserializers to really do their work. The raw data below shows additional measurements for deserialization.
 
-<img src='http://chart.apis.google.com/chart?chtt=deser%2Bdeep&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x422&chd=t:1863,2416,2473,2789,3311,3698,4728,4976,5416,5583,5885,6309,6894,9231,10866,13491,22318,23513,27620,36531,69538,104472,129927,132401,140333,142608,146652,148934&chds=0,163827.40000000002&chxt=y&chxl=0:|xml%2Fwoodstox-xstream|xml%2Faalto-xstream|xml%2Fxstream|json%2Fgoogle-gson|json%2Fprotobuf|xml-fi%2Fsun-xstream|scala%2Fjava-built-in|java-built-in|xml%2Fxstream%2Bc|xml%2Fwoodstox-xstream%2Bc|xml%2Faalto-xstream%2Bc|xml-fi%2Fsun-xstream%2Bc|hessian|json%2Fjackson-databind|xml%2Fjavolution|avro-generic|avro|json%2Fprotostuff|thrift-compact|json%2Fprotostuff-numeric|thrift|json%2Fjackson|scala%2Fsbinary|protobuf|protobuf%2Factivemq%2Balt|kryo|kryo-opt|java-manual&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=7,0,7&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=deser%2Bdeep&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x426&chd=t:1472,2354,2444,2457,2700,2749,2886,3439,4642,4816,4900,5187,5563,6607,6785,7912,8088,9374,9440,12083,16813,17359,23999,24095,45956,60895,92876,119313,122276,134804,136596,139454,141297&chds=0,155427.12900000002&chxt=y&chxl=0:|xml%2Fxstream|woodstox-xstream|aalto-xstream|json%2Fgoogle-gson|fastinfo-xstream|json%2Fprotobuf|scala%2Fjava-built-in|java-built-in|xml%2Fxstream%2Bc|woodstox-xstream%2Bc|fastinfo-xstream%2Bc|aalto-xstream%2Bc|xml%2Fmanual-fastinfo|hessian|xml%2Fmanual-woodstox|xml%2Fjavolution|avro-generic|avro|json%2Fjackson-databind|xml%2Fmanual-aalto|json%2Fprotostuff-runtime|thrift-compact|thrift|json%2Fprotostuff-core|json%2Fjackson-manual|scala%2Fsbinary|protobuf%2Factivemq%2Balt|protobuf%2Fprotostuff-runtime|protobuf|protobuf%2Fprotostuff-core|kryo|kryo-opt|java-manual&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=6,0,6&nonsense=aaa.png'/>
 
 == Serialized Size ("size") ==
 
@@ -67,13 +68,13 @@ The size of the serialized data.  These numbers may vary depending on the exact 
  * Java's built-in serializer stores the full class name in serialized form.  So you don't need to know ahead of time what kind of object you're reading in.
  * The 'scala' test, which uses Java's built-in serialization, yields a larger serialized representation because it usually creates more Java classes under the hood.
 
-<img src='http://chart.apis.google.com/chart?chtt=size&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x422&chd=t:219,221,221,233,239,239,240,255,255,293,349,377,381,398,419,419,432,444,466,486,488,501,503,758,796,796,889,1258&chds=0,1383.8000000000002&chxt=y&chxl=0:|scala%2Fjava-built-in|java-built-in|xml%2Fwoodstox-xstream|xml%2Faalto-xstream|xml%2Fxstream|json%2Fjackson-databind|hessian|json%2Fprotobuf|json%2Fgoogle-gson|json%2Fprotostuff|xml-fi%2Fsun-xstream|xml%2Fjavolution|xml%2Faalto-xstream%2Bc|xml%2Fwoodstox-xstream%2Bc|json%2Fjackson|xml%2Fxstream%2Bc|json%2Fprotostuff-numeric|thrift|xml-fi%2Fsun-xstream%2Bc|java-manual|scala%2Fsbinary|thrift-compact|protobuf%2Factivemq%2Balt|protobuf|kryo|avro-generic|avro|kryo-opt&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=7,0,7&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=size&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x426&chd=t:219,221,221,233,239,239,239,240,241,255,255,293,333,349,360,370,381,398,419,419,432,444,486,488,495,495,501,503,758,796,796,889,1312&chds=0,1443.2&chxt=y&chxl=0:|scala%2Fjava-built-in|java-built-in|woodstox-xstream|aalto-xstream|xml%2Fxstream|json%2Fjackson-databind|hessian|xml%2Fmanual-woodstox|xml%2Fmanual-aalto|json%2Fprotobuf|json%2Fgoogle-gson|fastinfo-xstream|xml%2Fjavolution|woodstox-xstream%2Bc|aalto-xstream%2Bc|json%2Fjackson-manual|xml%2Fxstream%2Bc|json%2Fprotostuff-runtime|json%2Fprotostuff-core|thrift|xml%2Fmanual-fastinfo|fastinfo-xstream%2Bc|java-manual|scala%2Fsbinary|protobuf%2Fprotostuff-runtime|thrift-compact|protobuf%2Factivemq%2Balt|protobuf|protobuf%2Fprotostuff-core|kryo|avro-generic|avro|kryo-opt&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=6,0,6&nonsense=aaa.png'/>
 
 == Serialization Compressed Size ("size+dfl") ==
 
 The size of the serialized data compressed with Java's built-in implementation of DEFLATE (zlib).
 
-<img src='http://chart.apis.google.com/chart?chtt=size%2Bdfl&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x422&chd=t:133,133,135,147,147,147,149,149,149,195,205,208,220,227,236,236,239,251,253,259,270,313,313,323,344,344,517,696&chds=0,765.6&chxt=y&chxl=0:|scala%2Fjava-built-in|java-built-in|xml%2Fwoodstox-xstream|xml%2Faalto-xstream|xml-fi%2Fsun-xstream|hessian|xml%2Fxstream|json%2Fjackson-databind|json%2Fgoogle-gson|json%2Fprotobuf|json%2Fprotostuff|xml%2Fjavolution|xml%2Faalto-xstream%2Bc|xml%2Fwoodstox-xstream%2Bc|xml-fi%2Fsun-xstream%2Bc|json%2Fjackson|json%2Fprotostuff-numeric|xml%2Fxstream%2Bc|thrift|protobuf%2Factivemq%2Balt|protobuf|thrift-compact|kryo|java-manual|scala%2Fsbinary|kryo-opt|avro-generic|avro&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=7,0,7&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=size%2Bdfl&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x426&chd=t:133,133,135,147,147,147,149,149,149,149,150,191,195,202,205,220,227,236,236,239,250,253,259,267,267,270,313,313,323,344,344,517,700&chds=0,770.0000000000001&chxt=y&chxl=0:|scala%2Fjava-built-in|java-built-in|woodstox-xstream|aalto-xstream|fastinfo-xstream|hessian|xml%2Fxstream|json%2Fjackson-databind|xml%2Fmanual-woodstox|xml%2Fmanual-aalto|json%2Fgoogle-gson|json%2Fprotobuf|xml%2Fmanual-fastinfo|xml%2Fjavolution|woodstox-xstream%2Bc|aalto-xstream%2Bc|fastinfo-xstream%2Bc|json%2Fjackson-manual|xml%2Fxstream%2Bc|json%2Fprotostuff-runtime|thrift|json%2Fprotostuff-core|protobuf%2Fprotostuff-runtime|protobuf%2Factivemq%2Balt|protobuf|protobuf%2Fprotostuff-core|thrift-compact|kryo|java-manual|scala%2Fsbinary|kryo-opt|avro-generic|avro&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=6,0,6&nonsense=aaa.png'/>
 
 == Object Creation Time ("create") ==
 
@@ -81,41 +82,46 @@ Object creation is not so meaningful since it takes in average 100 nano to creat
  * Protobuf and Thrift use the "builder" pattern to create objects, which makes the operation more expensive.
  * Avro stores Strings in UTF8 form.  The time taken to convert from Java "String" values to UTF-8 is included under "create", "ser", "deser+shal", and "deser+deep", which isn't quite representative of real-world usage.  Real code that uses Avro might be able to keep strings in UTF-8 form, thus avoiding the need to convert back and forth (in which case the "ser+same" and "deser" results might be more accurate reflections of Avro's performance).
 
-<img src='http://chart.apis.google.com/chart?chtt=create&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x422&chd=t:150,151,151,151,151,151,151,151,151,151,151,151,151,152,152,152,153,276,307,307,390,392,393,393,748,748,1849,3097&chds=0,3407.6515&chxt=y&chxl=0:|avro-generic|avro|scala%2Fjava-built-in|scala%2Fsbinary|json%2Fprotobuf|json%2Fprotostuff-numeric|protobuf|json%2Fprotostuff|thrift-compact|thrift|protobuf%2Factivemq%2Balt|xml%2Fxstream|json%2Fgoogle-gson|xml%2Fwoodstox-xstream|xml-fi%2Fsun-xstream|json%2Fjackson|xml%2Fxstream%2Bc|xml%2Faalto-xstream%2Bc|json%2Fjackson-databind|xml%2Fjavolution|xml%2Fwoodstox-xstream%2Bc|java-manual|java-built-in|kryo-opt|xml%2Faalto-xstream|xml-fi%2Fsun-xstream%2Bc|kryo|hessian&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=7,0,7&nonsense=aaa.png'/>
+<img src='http://chart.apis.google.com/chart?chtt=create&chf=c||lg||0||FFFFFF||1||76A4FB||0|bg||s||EFEFEF&chs=700x426&chd=t:223,224,224,224,224,224,225,225,225,225,226,227,227,227,228,228,228,229,229,231,232,238,361,363,374,422,422,484,498,744,760,1923,2391&chds=0,2630.206821&chxt=y&chxl=0:|avro-generic|avro|scala%2Fjava-built-in|scala%2Fsbinary|json%2Fprotobuf|protobuf|thrift|thrift-compact|protobuf%2Factivemq%2Balt|protobuf%2Fprotostuff-core|json%2Fprotostuff-core|xml%2Fjavolution|fastinfo-xstream%2Bc|json%2Fjackson-manual|kryo-opt|aalto-xstream%2Bc|json%2Fgoogle-gson|hessian|fastinfo-xstream|woodstox-xstream|protobuf%2Fprotostuff-runtime|java-built-in|json%2Fprotostuff-runtime|xml%2Fxstream|json%2Fjackson-databind|aalto-xstream|xml%2Fxstream%2Bc|xml%2Fmanual-woodstox|kryo|woodstox-xstream%2Bc|xml%2Fmanual-aalto|java-manual|xml%2Fmanual-fastinfo&chm=N *f*,000000,0,-1,10&lklk&chdlp=t&chco=660000|660033|660066|660099|6600CC|6600FF|663300|663333|663366|663399|6633CC|6633FF|666600|666633|666666&cht=bhg&chbh=6,0,6&nonsense=aaa.png'/>
 
 = Numbers =
 
 Times are in nanoseconds, sizes are in bytes.
 {{{
-                         create     ser   +same   deser   +shal   +deep   total   size  +dfl
-protobuf                    376    4402    2225    2217    2288    2374    6777    239   149
-thrift                      307    4243    3959    4652    4750    4931    9174    349   195
-thrift-compact              306    4151    3688    4973    5070    5277    9428    240   149
-protobuf/activemq+alt       275    4285      13      16    1309    2625    6910    239   149
-kryo                        143    2201    2014    2388    2445    2499    4700    233   147
-kryo-opt                    143    2063    1922    2174    2222    2296    4359    219   135
-avro                       1849    4573    2552    4482    5618    6310   10883    221   133
-avro-generic               3098    5701    2381    4000    5682    6894   12595    221   133
-hessian                     151    8132    6893   13180   13347   13491   21623    501   313
-java-built-in               152   13826   12248   69188   69197   69538   83364    889   517
-java-manual                 152    1805    1685    1363    1767    1863    3668    255   147
-scala/java-built-in         919   19607   16645   89546   90091   91357  110964   1258   696
-scala/sbinary               748    4401    3369    3879    3320    3698    8099    255   147
-json/jackson                152    4735    4473    4431    4556    4728    9463    398   220
-json/jackson-databind       152    7241    6935   10454   10632   10867   18108    503   270
-json/protobuf               394   21859   20993  131476  131784  132401  154260    488   253
-json/protostuff             391    5254    4637    5557    5692    5885   11139    466   251
-json/protostuff-numeric     393    5022    4438    4925    5132    5416   10438    377   208
-json/google-gson            153  101645  101461  140648  140804  140334  241978    486   259
-xml/xstream                 153   97629   94068  147922  147512  142608  240237    758   313
-xml/xstream+c               152   15153   13093   36151   36519   36531   51684    381   205
-xml-fi/sun-xstream          153  115753  111047  129550  130387  129928  245681    444   323
-xml-fi/sun-xstream+c        151   19127   17410   21973   22118   22319   41445    293   227
-xml/woodstox-xstream        153   94240   90839  148823  148779  148934  243174    796   344
-xml/woodstox-xstream+c      152   12726   10476   27373   27287   27620   40346    419   236
-xml/aalto-xstream           151   93485   89248  144765  146141  146652  240137    796   344
-xml/aalto-xstream+c         152   10672    8793   23066   23363   23514   34185    419   236
-xml/javolution              152    6099    5873    8811    9002    9231   15330    432   239
+                             create     ser   +same   deser   +shal   +deep   total   size  +dfl
+protobuf                        484    4250    2109    2446    2540    2700    6950    239   149
+thrift                          423    4327    4005    4554    4688    4901    9228    349   195
+thrift-compact                  423    4345    3909    5008    5090    5187    9532    240   149
+protobuf/activemq+alt           374    4313       9      22    1474    2887    7200    239   149
+protobuf/protostuff-core        363    2637    2329    2244    2368    2457    5095    239   149
+protobuf/protostuff-runtime     228    2963    2794    2336    2622    2749    5713    241   150
+kryo                            225    2139    1984    2302    2395    2445    4584    233   147
+kryo-opt                        230    2022    1895    2181    2266    2354    4376    219   135
+avro                           1923    4662    2738    5919    7128    7913   12575    221   133
+avro-generic                   2391    5145    2458    5549    7158    8088   13233    221   133
+hessian                         228   11199   10274   12054   12171   12084   23283    501   313
+java-built-in                   227   13204   11621   60011   60333   60895   74100    889   517
+java-manual                     224    1762    1605    1297    1379    1473    3235    255   147
+scala/java-built-in             760   20830   17924   89780   92206   92877  113707   1312   700
+scala/sbinary                   745    4378    3285    3019    3166    3440    7818    255   147
+json/jackson-manual             232    6622    6447    4412    4494    4643   11265    398   220
+json/jackson-databind           226   10402   10070    6394    6637    6786   17188    503   270
+json/protostuff-core            362    7883    7429    4516    4628    4816   12699    360   191
+json/protostuff-runtime         227    8554    8145    5281    5431    5563   14117    370   202
+json/protobuf                   498   22376   21635  121247  118415  119314  141689    488   253
+json/google-gson                228   83339   82820  135358  134710  134805  218143    486   259
+xml/manual-woodstox             225    6804    6603    8988    9212    9441   16245    495   267
+xml/manual-aalto                224    4554    4170    6203    6336    6607   11161    495   267
+xml/manual-fastinfo             223   14206   13939   16342   16591   16813   31019    333   250
+xml/xstream                     226   86102   83869  144382  143239  141297  227399    758   313
+xml/xstream+c                   225   15707   14192   45473   47699   45956   61663    381   205
+woodstox-xstream                228   88784   86762  140295  139975  139454  228238    796   344
+woodstox-xstream+c              225   12916   11720   23559   23818   24096   37012    419   236
+aalto-xstream                   226   89309   84790  137973  132225  136597  225906    796   344
+aalto-xstream+c                 230   10899    9350   16736   16814   17360   28259    419   236
+fastinfo-xstream                228  105667  102379  122782  125822  122276  227944    444   323
+fastinfo-xstream+c              232   19990   18306   23616   23900   24000   43990    293   227
+xml/javolution                  239    5575    5423    8823    9100    9375   14950    432   239
 }}}
 
 Columns:
