@@ -71,6 +71,13 @@ This page tries to list the tool features that are relevant to interpreting our 
    <td>binary, json</td>
 </tr>
 <tr>
+   <td>protobuf/protostuff-core</td>
+   <td>yes</td>
+   <td>schema+gen</td>
+   <td></td>
+   <td>binary, json</td>
+</tr>
+<tr>
    <td>avro</td>
    <td>yes</td>
    <td>schema+gen</td>
@@ -168,6 +175,9 @@ protobuf (Google Protocol Buffers):
 protobuf/activemq-alt:
  * Java-only protobuf-format-compatible implementation from the ActiveMQ project.
  * We use the "alternative" bindings generator, which parses the input on-demand (i.e. when the actual fields are accessed).
+
+protobuf/protostuff-core:
+ * simple java pojos that writes to various formats efficiently (protobuf,json,etc) 
 
 thrift (Apache Thrift):
  * Very similar to protobuf.
