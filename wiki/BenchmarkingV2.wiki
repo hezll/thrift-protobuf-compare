@@ -10,7 +10,9 @@ In short, before you make a decision on which tool to use, make sure you try it 
 == Setup ==
 
 Hardware: Intel Core 2 Quad
+
 Software: Sun JRE 1.6.0_20 (64-bit server VM), Ubuntu 9.10
+
 JVM options: -Xmx16m -server
 
 Data value being tested: DataStructuresV2.
