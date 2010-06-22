@@ -1,3 +1,4 @@
+#labels Featured
 = Feature Comparison =
 
 Performance numbers are useful, but they can be misleading.  For example:
@@ -71,11 +72,11 @@ This page tries to list the tool features that are relevant to interpreting our 
    <td>binary, json</td>
 </tr>
 <tr>
-   <td>protobuf/protostuff-core</td>
+   <td>protostuff</td>
    <td>yes</td>
    <td>schema+gen</td>
    <td></td>
-   <td>binary, json</td>
+   <td>binary, protobuf, json, xml</td>
 </tr>
 <tr>
    <td>avro</td>
