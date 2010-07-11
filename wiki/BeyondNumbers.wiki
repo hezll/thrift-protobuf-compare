@@ -76,7 +76,7 @@ This page tries to list the tool features that are relevant to interpreting our 
    <td>yes</td>
    <td>schema+gen</td>
    <td></td>
-   <td>binary, protobuf, json, xml</td>
+   <td>binary, protobuf, json, xml, yaml</td>
 </tr>
 <tr>
    <td>avro</td>
@@ -177,8 +177,8 @@ protobuf/activemq-alt:
  * Java-only protobuf-format-compatible implementation from the ActiveMQ project.
  * We use the "alternative" bindings generator, which parses the input on-demand (i.e. when the actual fields are accessed).
 
-protobuf/protostuff-core:
- * simple java pojos that writes to various formats efficiently (protobuf,json,etc) 
+protostuff:
+ * simple java pojos that serialize to various formats efficiently (binary,protobuf,json,xml,yaml) 
 
 thrift (Apache Thrift):
  * Very similar to protobuf.
