@@ -179,6 +179,11 @@ protobuf/activemq-alt:
 
 protostuff:
  * simple java pojos that serialize to various formats efficiently (binary,protobuf,json,xml,yaml) 
+ * the difference between protostuff's binary format (-ge) and protobuf is that the nested(embedded) message of a message is serialized differently.
+ Protobuf has a field encoding type named "group" and protostuff uses its encoding for the nested messages.
+ * The reason why the "runtime" variant has a different serialized size than "core" is because the former serializes the hand-written sources located on tpc/src/data/media/ dir.
+ If you look at Media.java in there, it has an extra boolean field "hasBitrate" w/c explains 
+ the 2-byte difference(1-byte for the varint and 1-byte for the boolean value).
 
 thrift (Apache Thrift):
  * Very similar to protobuf.
