@@ -24,7 +24,7 @@ Version of the benchmarking code: <a href="https://github.com/eishay/jvm-seriali
 Methodology:
  * Before taking measurements, we warm things up by running the test several times.
  * For a test, measure the time taken to perform 2000 operations (serialization, deserialization, etc.).  Then divide the result by 2000.
- * Run each test 100 times and report the best result.
+ * Run each test 500 times and report the best result.
  * Look at the code for more details. [http://github.com/eishay/jvm-serializers/tree/1f16663c3acafd998f59b4c9e39020be1878bd60/tpc/src/serializers/BenchmarkRunner.java BenchmarkRunner.java]
 
 Tool Versions ([http://github.com/eishay/jvm-serializers/tree/1f16663c3acafd998f59b4c9e39020be1878bd60/tpc/lib lib/]):
