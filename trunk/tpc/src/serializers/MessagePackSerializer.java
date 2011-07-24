@@ -12,7 +12,7 @@ public class MessagePackSerializer extends StdMediaSerializer
 	private MediaContent fixture;
 
 	protected MessagePackSerializer() {
-		super("MessagePack");
+		super("MessagePack (buggy)");
 		MessagePack.register(MediaContent.class);
 		try {
 			fixture = create();
