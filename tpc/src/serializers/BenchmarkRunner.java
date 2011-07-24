@@ -43,6 +43,7 @@ public class BenchmarkRunner
     runner.addObjectSerializer(new HessianSerializer());
     runner.addObjectSerializer(new KryoSerializer());
     runner.addObjectSerializer(new KryoOptimizedSerializer());
+    runner.addObjectSerializer(new MessagePackSerializer());
 
     // then language default serializers
     runner.addObjectSerializer(new JavaSerializer());
