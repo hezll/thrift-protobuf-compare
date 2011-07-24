@@ -4,18 +4,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.msgpack.annotation.MessagePackMessage;
+
 import com.twolattes.json.Entity;
 import com.twolattes.json.Value;
 
 @Entity
+@MessagePackMessage
 public class MediaContent  implements Serializable
 {
   private static final long serialVersionUID = 1L;
+  
+  // Note: fields MUST be public for MessagePack
 
   // Note: use FIELD_NAME_IMAGES
-  private @Value(name = "im") List<Image> _images;
+  public @Value(name = "im") List<Image> _images;
   // Note: use FIELD_NAME_MEDIA
-  private @Value(name = "md") Media _media;
+  public @Value(name = "md") Media _media;
   
     public MediaContent() { }
 

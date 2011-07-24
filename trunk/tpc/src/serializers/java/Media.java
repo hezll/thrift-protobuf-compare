@@ -4,31 +4,38 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.msgpack.annotation.MessagePackMessage;
+import org.msgpack.annotation.MessagePackOrdinalEnum;
+
 import com.twolattes.json.Entity;
 import com.twolattes.json.Value;
 
 @Entity
+@MessagePackMessage
 public class Media implements Serializable
 {
   private static final long serialVersionUID = 1L;
 
+  @MessagePackOrdinalEnum
   public enum Player
   {
     JAVA, FLASH
   }
 
-    // Note: MUST use names from StdMediaSerializer (FIELD_NAME_xxx)
+  // Note: MUST use names from StdMediaSerializer (FIELD_NAME_xxx)
+  // Note: MUST be public for MessagePack
 
-  private @Value(name = "pl", ordinal = true) Player _player;
-  private @Value(name = "ul") String _uri;
-  private @Value(name = "tl") String _title;
-  private @Value(name = "wd") int _width;
-  private @Value(name = "hg") int _height;
-  private @Value(name = "fr") String _format;
-  private @Value(name = "dr") long _duration;
-  private @Value(name = "sz") long _size;
-  private @Value(name = "br") int _bitrate;
-  private @Value(name = "pr") List<String> _persons;
+  public @Value(name = "pl", ordinal = true) Player _player;
+  public @Value(name = "ul") String _uri;
+  public @Value(name = "tl") String _title;
+  public @Value(name = "wd") int _width;
+  public @Value(name = "hg") int _height;
+  public @Value(name = "fr") String _format;
+  public @Value(name = "dr") long _duration;
+  public @Value(name = "sz") long _size;
+  public @Value(name = "br") int _bitrate;
+  public @Value(name = "pr") List<String> _persons;
+  // Note: due to a bug in MessagePack, this field can not be public
   private @Value(name = "c") String _copyright;
 
   public Media(){}
